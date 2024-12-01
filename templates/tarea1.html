@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='extended_beauty.css') }}" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+
+    <form id="modeloForm" action="{{ url_for('main.tarea1') }}" method="POST">
+        <label for="modelo">Seleccione un modelo:</label>
+        <select id="modelo" name="modelo">
+            <option value="modelo1">Lineal</option>
+            <option value="modelo2">Raiz y</option>
+            <option value="modelo3">Exponencial</option>
+            <option value="modelo4">Inverso y</option>
+            <option value="modelo5">Cuadrado y</option>
+            <option value="modelo6">Raiz x</option>
+        </select>
+        <button type="submit">Ajustar modelo</button>
+    </form>
+
+    <div id="imagen-modelo">
+        <!-- Imagen del modelo seleccionada se cargará aquí -->
+        <img id="imagenModelo" src="{{ url_for('static', filename='images/modelo1.png') }}" alt="Imagen del modelo" style="display: block; width: 80%; max-width: 900px; margin: 20px auto;" />
+    </div>
+
+    <script type="text/javascript">
+        // Ejecutar cuando se envíe el formulario
+        document.getElementById("modeloForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+
+            var modelo = document.getElementById("modelo").value; // Obtener el valor del modelo seleccionado
+            var imagen = document.getElementById("imagenModelo");
+
+            // Establecer la ruta de la imagen basada en el valor del modelo
+            imagen.src = "{{ url_for('static', filename='images/') }}" + modelo + ".png";
+
+            // Mostrar la imagen
+            imagen.style.display = 'block';
+        });
+    </script>
+
+    <script type="text/javascript" async 
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <script type="text/javascript">
+        // Ejecutar MathJax para procesar las fórmulas al cargar la página
+        window.onload = function() {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    </script>
+</div>
+{% endblock %}
