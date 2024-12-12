@@ -3,7 +3,11 @@ import numpy as np
 from sympy import symbols, integrate,exp,sqrt
 
 main=Blueprint('main',__name__)
-
-@main.route('/')
+@main.route('/', methods=['GET', 'POST'])
 def tarea1():
     return render_template('tarea1.html')
+
+
+@main.route('/tarea2')
+def tarea2():
+    return render_template('tarea2.html')
