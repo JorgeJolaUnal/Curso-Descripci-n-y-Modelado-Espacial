@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='extended_beauty.css') }}" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+    .centered-container {
+    text-align: center; /* Centra el texto dentro del contenedor */
+    margin: 20px 0; 
+}
+    .image-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .image-box {
+        text-align: center;
+    }
+
+    .image-box img {
+        width: 700px;
+        height: 450px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .image-box h3 {
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Beta = 1                     Semilla: 1000185674</h1>
+    <div class="instructions">
+                    1. Haga dos simulaciones 
+    </div>
+    <div class="image-container">
+        <div class="image-box">
+            <h3>Rendimiento 1</h3>
+            <img src="{{ url_for('static', filename='images/Beta1S1.png') }}" alt="Rendimiento 1" />
+        </div>
+        <div class="image-box">
+            <h3>Rendimiento 2</h3>
+            <img src="{{ url_for('static', filename='images/Beta1S2.png') }}" alt="Rendimiento 2" />
+        </div>
+    </div>
+    <div class="instructions">
+                2. Halle la correlación de Pearson entre el par de variables generadas
+    </div>
+    <div class="centered-container">
+        <h3>Corr: -0.1587391</h3>
+    </div>
+    <div class="instructions">
+                3. Halle la correlación de Pearson entre el par de variables generadas ponderando por latitud
+    </div>
+    <div class="centered-container">
+        <h3>Corr: -0.1108275</h3>
+    </div>
+    <div class="instructions">
+                4. Halle la correlación de Pearson entre el par de variables generadas ponderando por longitud        
+    </div>
+    <div class="centered-container">
+        <h3>Corr: -0.08853768</h3>
+    </div>
+    <div class="instructions">
+                5. Haga alguna propuesta que pondere por latitud y longitud
+    </div>
+    <div class="centered-container">
+        <h3>Mi propuesta: Correlación ponderada por distancias hasta un centroide ponderado por rendimiento</h3>
+        <h2>$$\text{Latitud}_{\text{ponderada}} = \frac{\sum_{i=1}^n rto_i*y_i}{\sum_{i=1}^n rto_i}$$</h2>
+        <h2>$$\text{Longitud}_{\text{ponderada}} = \frac{\sum_{i=1}^n rto_i*x_i}{\sum_{i=1}^n rto_i}$$</h2>
+        <h2>$$\text{Centroide}_{\text{ponderado}} = (\text{Longitud}_{\text{ponderada}} ,\text{Latitud}_{\text{ponderada}})$$</h2>
+    </div>
+    <div id="imagen-centro">
+        <!-- Imagen del modelo seleccionada se cargará aquí -->
+        <img id="imagen-centro" src="{{ url_for('static', filename='images/Centro1.png') }}" alt="Imagen del modelo" style="display: block; width: 80%; max-width: 900px; margin: 20px auto;" />
+    </div>
+    <div class="centered-container">
+    <h3>Distancia euclidiana ponderada</h3>
+    <h2>$$\text{Distancias} = \sqrt{(\text{latitud}_i - \text{latitud}_{\text{pond}})^2 + (\text{longitud}_i - \text{longitud}_{\text{pond}})^2}$$</h2>
+    </div>
+    <div id="imagen-dist">
+        <!-- Imagen del modelo seleccionada se cargará aquí -->
+        <img id="imagen-dist" src="{{ url_for('static', filename='images/Distancias1.png') }}" alt="Imagen del modelo" style="display: block; width: 80%; max-width: 900px; margin: 20px auto;" />
+    </div>
+</div>
+<div class="centered-container">
+    <h3>Correlación Ponderada por Distancias (Latitud y Longitud)</h3>
+    <h2>$$\frac{cov(x,y;\text{Dist})}{\sqrt{cov(x,x;\text{Dist})cov(y,y;\text{Dist})}}$$</h2>
+    <h3>Corr: -0.1698705</h3>
+</div>
+<div class="form-container">
+    <h1>Beta = 1.5                     Semilla: 1000185674</h1>
+    <div class="instructions">
+                    1. Haga dos simulaciones 
+    </div>
+    <div class="image-container">
+        <div class="image-box">
+            <h3>Rendimiento 1</h3>
+            <img src="{{ url_for('static', filename='images/Beta2S1.png') }}" alt="Rendimiento 1" />
+        </div>
+        <div class="image-box">
+            <h3>Rendimiento 2</h3>
+            <img src="{{ url_for('static', filename='images/Beta2S2.png') }}" alt="Rendimiento 2" />
+        </div>
+    </div>
+    <div class="instructions">
+                2. Halle la correlación de Pearson entre el par de variables generadas
+    </div>
+    <div class="centered-container">
+        <h3>Corr: -0.1587391</h3>
+    </div>
+    <div class="instructions">
+                3. Halle la correlación de Pearson entre el par de variables generadas ponderando por latitud
+    </div>
+    <div class="centered-container">
+        <h3>Corr: -0.1108275</h3>
+    </div>
+    <div class="instructions">
+                4. Halle la correlación de Pearson entre el par de variables generadas ponderando por longitud        
+    </div>
+    <div class="centered-container">
+        <h3>Corr: -0.08853768</h3>
+    </div>
+    <div class="instructions">
+                5. Haga alguna propuesta que pondere por latitud y longitud
+    </div>
+    <div class="centered-container">
+        <h3>Mi propuesta: Correlación ponderada por distancias hasta un centroide ponderado por rendimiento</h3>
+        <h2>$$\text{Latitud}_{\text{ponderada}} = \frac{\sum_{i=1}^n rto_i*y_i}{\sum_{i=1}^n rto_i}$$</h2>
+        <h2>$$\text{Longitud}_{\text{ponderada}} = \frac{\sum_{i=1}^n rto_i*x_i}{\sum_{i=1}^n rto_i}$$</h2>
+        <h2>$$\text{Centroide}_{\text{ponderado}} = (\text{Longitud}_{\text{ponderada}} ,\text{Latitud}_{\text{ponderada}})$$</h2>
+    </div>
+    <div id="imagen-centro">
+        <!-- Imagen del modelo seleccionada se cargará aquí -->
+        <img id="imagen-centro" src="{{ url_for('static', filename='images/Centro2.png') }}" alt="Imagen del modelo" style="display: block; width: 80%; max-width: 900px; margin: 20px auto;" />
+    </div>
+    <div class="centered-container">
+    <h3>Distancia euclidiana ponderada</h3>
+    <h2>$$\text{Distancias} = \sqrt{(\text{latitud}_i - \text{latitud}_{\text{pond}})^2 + (\text{longitud}_i - \text{longitud}_{\text{pond}})^2}$$</h2>
+    </div>
+    <div id="imagen-dist">
+        <!-- Imagen del modelo seleccionada se cargará aquí -->
+        <img id="imagen-dist" src="{{ url_for('static', filename='images/Distancias2.png') }}" alt="Imagen del modelo" style="display: block; width: 80%; max-width: 900px; margin: 20px auto;" />
+    </div>
+</div>
+<div class="centered-container">
+    <h3>Correlación Ponderada por Distancias (Latitud y Longitud)</h3>
+    <h2>$$\frac{cov(x,y;\text{Dist})}{\sqrt{cov(x,x;\text{Dist})cov(y,y;\text{Dist})}}$$</h2>
+    <h3>Corr: -0.1705037</h3>
+</div>
+{% endblock %}
