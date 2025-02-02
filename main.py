@@ -17,11 +17,16 @@ def tarea3():
         test_type = request.form['test_type']  # 'chi' o 'fisher'
         cell_size = int(request.form['cell_size'])  # Tamaño de la celda
         
-        # Ejecutar el script en R, pasando el tamaño de la celda
+        # Determinar el script de R a ejecutar
         if test_type == 'fisher':
-            result = subprocess.run(['run_fisher_test.R', str(cell_size)], capture_output=True, text=True)
+            r_script = 'run_fisher_test.R'
         elif test_type == 'chi':
-            result = subprocess.run(['run_chi_test.R', str(cell_size)], capture_output=True, text=True)
+            r_script = 'run_chi_test.R'
+        else:
+            return "Tipo de prueba no válido", 400
+        
+        # Ejecutar el script de R
+        result = subprocess.run(['Rscript', r_script, str(cell_size)], capture_output=True, text=True)
         
         # Pasar el resultado del test a la plantilla de resultados
         return render_template('result.html', result=result.stdout)
