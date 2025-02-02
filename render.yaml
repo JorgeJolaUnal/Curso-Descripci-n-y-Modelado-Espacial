@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: my-flask-app
+    env: python
+    buildCommand: |
+      apt-get update
+      apt-get install -y r-base  # Instalar R
+      pip install -r requirements.txt  # Instalar dependencias de Python
+    startCommand: gunicorn app:app  # Comando para iniciar tu aplicación Flask
