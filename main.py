@@ -19,9 +19,9 @@ def tarea3():
         
         # Ejecutar el script en R, pasando el tamaño de la celda
         if test_type == 'fisher':
-            result = subprocess.run(['Rscript', 'run_fisher_test.R', str(cell_size)], capture_output=True, text=True)
+            result = subprocess.run(['run_fisher_test.R', str(cell_size)], capture_output=True, text=True)
         elif test_type == 'chi':
-            result = subprocess.run(['Rscript', 'run_chi_test.R', str(cell_size)], capture_output=True, text=True)
+            result = subprocess.run(['run_chi_test.R', str(cell_size)], capture_output=True, text=True)
         
         # Pasar el resultado del test a la plantilla de resultados
         return render_template('result.html', result=result.stdout)
