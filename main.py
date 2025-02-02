@@ -14,16 +14,12 @@ def tarea2():
 @main.route('/tarea3',methods=['GET', 'POST'])
 def tarea3():
     if request.method == 'POST':
-        test_type = request.form['test_type']  # 'chi' o 'fisher'
-        cell_size = int(request.form['cell_size'])  # Tamaño de la celda
-        
-        # Ejecutar el script en R, pasando el tamaño de la celda
+        test_type = request.form['test_type']
+        cell_size = int(request.form['cell_size'])
         if test_type == 'fisher':
-            result = subprocess.run(['run_fisher_test.R', str(cell_size)], capture_output=True, text=True)
+            result = subprocess.run(['Rscript', 'run_fisher_test.R', str(cell_size)], capture_output=True, text=True)
         elif test_type == 'chi':
-            result = subprocess.run(['run_chi_test.R', str(cell_size)], capture_output=True, text=True)
-        
-        # Pasar el resultado del test a la plantilla de resultados
+            result = subprocess.run(['Rscript', 'run_chi_test.R', str(cell_size)], capture_output=True, text=True)
         return render_template('result.html', result=result.stdout)
     return render_template('tarea3.html')
 
