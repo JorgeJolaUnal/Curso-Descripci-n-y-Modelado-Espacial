@@ -7,6 +7,7 @@ RUN apt-get update && \
     r-base \
     && rm -rf /var/lib/apt/lists/*
 
+RUN which Rscript
 # Establece el directorio de trabajo
 WORKDIR /app
 
